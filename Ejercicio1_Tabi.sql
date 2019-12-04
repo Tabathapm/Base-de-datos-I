@@ -541,21 +541,21 @@ SELECT Ciudad.nombre AS 'Nombre de la Ciudad'
 FROM Ciudad INNER JOIN Proveedor
 On Ciudad.cod_ciu = Proveedor.cod_ciu
 WHERE NOT EXISTS (SELECT *
-			      FROM Material
-				  WHERE NOT EXISTS (SELECT *
-									FROM Provisto_por
-									WHERE Proveedor.cod_prov = Provisto_por.cod_prov 
-                                    AND Material.cod_mat = Provisto_por.cod_mat));
+                  FROM Material
+	          WHERE NOT EXISTS (SELECT *
+		  FROM Provisto_por
+		  WHERE Proveedor.cod_prov = Provisto_por.cod_prov 
+                  AND Material.cod_mat = Provisto_por.cod_mat));
                                     
 /* PUNTO 26 */
 SELECT Almacen.nro
 FROM Almacen
 WHERE NOT EXISTS (SELECT *
-				  FROM Articulo INNER JOIN Compuesto_por
-				  ON Articulo.cod_art = Compuesto_por.cod_art
-				  WHERE Compuesto_por.cod_mat LIKE '123' AND NOT EXISTS (SELECT *
-																		 FROM Contiene
-																		 WHERE Contiene.nro = Almacen.nro AND Contiene.cod_art = Articulo.cod_art));
+		  FROM Articulo INNER JOIN Compuesto_por
+	          ON Articulo.cod_art = Compuesto_por.cod_art
+		  WHERE Compuesto_por.cod_mat LIKE '123' AND NOT EXISTS (SELECT *
+									 FROM Contiene
+									 WHERE Contiene.nro = Almacen.nro AND Contiene.cod_art = Articulo.cod_art));
               
 
 
