@@ -543,9 +543,9 @@ On Ciudad.cod_ciu = Proveedor.cod_ciu
 WHERE NOT EXISTS (SELECT *
                   FROM Material
 	          WHERE NOT EXISTS (SELECT *
-		  FROM Provisto_por
-		  WHERE Proveedor.cod_prov = Provisto_por.cod_prov 
-                  AND Material.cod_mat = Provisto_por.cod_mat));
+		                    FROM Provisto_por
+		                    WHERE Proveedor.cod_prov = Provisto_por.cod_prov 
+                                    AND Material.cod_mat = Provisto_por.cod_mat));
                                     
 /* PUNTO 26 */
 SELECT Almacen.nro
