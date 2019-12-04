@@ -1,0 +1,87 @@
+Personaje(fecha_nacimiento, nombre_personaje, bastardo, madre, padre, 
+		nombre_cientifico, id_estatus, nombre_casa)
+
+	PK={fecha_nacimiento, nombre_personaje}
+
+	FK={madre ---> Personaje.nombre_personaje + Peronaje.fecha_nacimiento
+	    padre ---> Personaje.nombre_personaje + Peronaje.fecha_nacimiento
+	    nombre_cientifico ---> Especie.nombre_cientifico
+	    id_estatus ---> Estatus.id_estatus
+	    nombre_casa ---> Casa.nombre_casa}
+
+Profesion(nombre_profesion, tipo)
+
+	PK={nombre_profesion}
+
+Maestro(codigo, nombre_profesion)
+
+	PK={codigo, nombre_profesion}
+	FK={nombre_profesion ---> Profesion.nombre_profesion}
+
+Especie(nombre_cientifico, existe, hostil)
+
+	PK={nombre_cientifico}
+
+Habilidad(id_habilidad, nombre_cientifico)
+
+	PK={id_habilidad, nombre_cientifico}
+	FK={nombre_cientifico ---> Especie.nombre_cientifico}
+
+Estatus(id_estatus, nombre)
+
+	PK={id_estatus}
+
+Casa(nombre_casa, lema, fecha_fundacion, religion, nombre_reino, id_emblema)
+
+	PK={nombre_casa}
+	
+	FK={nombre_reino ---> Reino.nombre_reino
+	    id_emblema ---> Emblema.id_emblema}
+
+Emblema(id_emblema, animal, color)
+
+	PK={id_emblema}
+
+Guerra(año_inicio, cant_muertes, id_continente)
+
+	PK={año_inicio, id_continente}
+	FK={id_continente ---> Continente.id_continente}
+
+Reino(nombre_reino, cant_habitantes, id_continente)
+
+	PK={nombre_reino}
+	FK={id_continente --->Continente.id_continente}
+
+Continente(id_continente, nombre, posicion)
+
+	PK={id_continente}
+
+Ciudad(id_ciudad, extencion_km, nombre, nombre_reino)
+
+	PK={id_ciudad}
+	FK={nombre_reino ---> Reino.nombre_reino}
+
+Castillo(nombre_castillo, cant_sirvientes, nombre_reino, tipo_fuerte)
+
+	PK={nombre_castillo, nombre_reino}
+	FK={nombre_reino ---> Reino.nombre_reino
+	    tipo_fuerte ---> Fuerte.tipo_fuerte}
+
+Fuerte(tipo_fuerte, descripcion)
+
+	PK={tipo_fuerte}
+
+Ejerce(nombre_profesion, nombre_personaje, fecha_nacimiento)
+
+	PK={nombre_profesion, nombre_personaje, fecha_nacimiento}
+
+	FK={nombre_profesion ---> Profesion.nombre_profesion
+	    nombre_personaje ---> Personaje.nombre_personaje
+	    fecha_nacimiento ---> personaje.fecha_nacimiento}
+
+Participa(nombre_casa, año_inicio + id_continente, resultado)
+
+	PK={nombre_casa, año_inicio + id_continente}
+
+	FK={nombre_casa ---> Casa.nombre_casa
+	    año_inicio + id_continente ---> Guerra.año_inicio + id_continente}
